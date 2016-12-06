@@ -34,9 +34,9 @@ function processEvent(event, callback) {
 
     // Polly default settting and text message from slack
     const pollyParams = {
-      OutputFormat: 'mp3', // 音声フォーマット
-      Text: commandText, // スラックから呼び出したメッセージ
-      VoiceId: 'Emma', // 読ませたい音声。これは英国英語
+      OutputFormat: 'mp3', // Audio Format
+      Text: commandText, // Received message from Slack
+      VoiceId: 'Emma', // Voice of Polly. Emma is UK English.
       TextType: 'text'
     };
 
@@ -51,10 +51,10 @@ function processEvent(event, callback) {
 
           // params for S3 to put
           var s3Params = {
-            ACL: 'public-read', //S3権限
-            Bucket: 'YOUR-BACKET', //アップロードバケット先
-            Key: `YOUR-FILE${timenow}.mp3`, //S3のファイル名
-            Body: new Buffer(data.AudioStream) // AudioStreamの取得
+            ACL: 'public-read', //S3 Authentication Previledge
+            Bucket: 'YOUR-BACKET', // S3 Backet where you want to upload
+            Key: `YOUR-FILE${timenow}.mp3`, // New Audio File name
+            Body: new Buffer(data.AudioStream) // AudioStream Data
           };
 
           // upload the data to S3
